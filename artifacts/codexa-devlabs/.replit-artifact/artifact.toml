@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Codexa Devlabs"
+version = "1.0.0"
+id = "artifacts/codexa-devlabs"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23625
+
+[services.development]
+run = "pnpm --filter @workspace/codexa-devlabs run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/codexa-devlabs", "run", "build" ]
+publicDir = "artifacts/codexa-devlabs/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23625"
+BASE_PATH = "/"

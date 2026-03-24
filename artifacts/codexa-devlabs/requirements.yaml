@@ -1,0 +1,10 @@
+packages:
+  "framer-motion": "For complex scroll animations, transitions, and the multi-step modal animations requested."
+  "clsx": "Utility for constructing className strings conditionally."
+  "tailwind-merge": "Utility to safely merge Tailwind classes."
+  "lucide-react": "For UI icons."
+
+notes:
+  - "This is a purely frontend showcase application. All form submissions and interactive processes (like the modal) are simulated on the client side."
+  - "Animations heavily rely on framer-motion and standard CSS keyframes defined in index.css."
+  - "The color palette uses Charcoal (Dark Blue/Gray) and Peach as specified."

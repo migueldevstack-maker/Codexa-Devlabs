@@ -1,0 +1,325 @@
+Tu es un développeur frontend expert de niveau world-class. Crée un site web vitrine 
+complet, époustouflant et entièrement fonctionnel en HTML/CSS/JS (fichier unique) pour 
+une agence de développement web, logiciels et applications nommée **Codexa Devlabs**.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 IDENTITÉ VISUELLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Nom : Codexa Devlabs
+- Couleur principale : Charcoal (#1F2937)
+- Couleur accent : Peach (#FFA77F)
+- Police display (titres) : "Space Mono" ou "Fira Code" (effet terminal/code)
+- Police body : "DM Sans" ou "Outfit"
+- Importer depuis Google Fonts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🏗️ STRUCTURE DES SECTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. NAVBAR fixe
+   - Logo "Codexa Devlabs" avec icône <> stylisée en Peach
+   - Liens : Accueil | Services | Projets | À propos | Contact
+   - Fond transparent au scroll, devient Charcoal solide au scroll
+   - Hamburger animé sur mobile
+   - Bouton CTA "Démarrer un projet" avec hover effect peach glow
+
+2. HERO SECTION (fond Charcoal)
+   - Titre animé : effet typewriter qui tape "Nous codons vos ambitions." 
+     puis efface et retape "We build the future." en boucle
+   - Sous-titre fade-in : "Développement Web · Logiciels · Applications Mobile"
+   - Deux boutons : [Voir nos projets] [Nous contacter] avec animations
+   - Arrière-plan : grille de code animée (lignes de code qui défilent 
+     verticalement, semi-transparentes, style matrix mais en Peach/orange clair)
+   - Icônes flottantes de développement (voir section icônes ci-dessous) 
+     qui se déplacent lentement en orbite ou en float dans tout le héro
+   - Particules légères en arrière-plan connectées par des lignes fines
+
+3. SECTION SERVICES (fond Peach #FFA77F) ← INVERSION DE COULEUR SLIDE 1
+   - Titre en Charcoal : "Ce que nous créons"
+   - 3 à 4 cartes de services en Charcoal avec texte clair :
+     · Sites Web & Landing Pages
+     · Applications Mobile (iOS & Android)
+     · Logiciels sur mesure
+     · Maintenance & Support
+   - Chaque carte : icône animée au hover, bordure qui s'allume en Peach,
+     effet lift (translateY + box-shadow)
+   - Animation d'entrée : cards qui slide depuis le bas au scroll (IntersectionObserver)
+
+4. SECTION POURQUOI NOUS (fond Charcoal) ← RETOUR COULEUR PRINCIPALE
+   - Split layout : gauche texte, droite visuel animé (terminal/IDE mockup)
+   - Mockup d'un éditeur de code qui tape du code en temps réel (simulé en JS)
+   - Stats animés au scroll : "50+ projets livrés", "98% satisfaction", "3 ans d'expérience"
+   - Les chiffres s'incrémentent de 0 jusqu'à la valeur cible (counter animation)
+   - Icônes tech stack flottantes : React, Node.js, Flutter, Python, etc.
+
+5. SECTION PROJETS / PORTFOLIO (fond #2D3748 légèrement plus clair que Charcoal)
+   - Titre : "Nos réalisations"
+   - Grille de 3-6 cartes projets avec :
+     · Image placeholder stylisée (gradient + icône)
+     · Titre du projet
+     · Tags tech utilisées
+     · Effet hover : overlay Peach avec bouton "Voir le projet"
+     · Animation : flip card ou reveal overlay au hover
+   - Filtres de catégories animés : Tous | Web | Mobile | Logiciels
+
+6. SECTION PROCESSUS (fond Peach) ← INVERSION DE COULEUR SLIDE 2
+   - Titre en Charcoal : "Comment nous travaillons"
+   - Timeline horizontale ou verticale avec 4 étapes animées :
+     1. Analyse & Conception
+     2. Design UI/UX
+     3. Développement
+     4. Livraison & Support
+   - Chaque étape s'anime au scroll avec une ligne de connexion qui se dessine 
+     progressivement (stroke animation SVG)
+   - Icônes Peach sur fond Charcoal pour chaque étape
+
+7. SECTION TECHNOLOGIES (fond Charcoal) ← RETOUR
+   - Titre : "Notre stack technologique"
+   - Défilement infini horizontal (marquee/carousel) des logos/icônes tech :
+     HTML5, CSS3, JavaScript, React, Vue, Node.js, Python, Flutter, 
+     Firebase, MongoDB, MySQL, Figma, Git, Docker, etc.
+   - Deux rangées qui défilent en sens opposés
+   - Logos en SVG ou emoji stylisés, filtre gris → couleur au hover
+
+8. SECTION TÉMOIGNAGES (fond légèrement différent, ex: #111827)
+   - Titre : "Ce que disent nos clients"
+   - Slider/carousel automatique avec 3 témoignages fictifs
+   - Étoiles animées, avatar placeholder, citation en italique
+   - Navigation dots animés
+
+9. SECTION CTA / CONTACT (fond Peach) ← INVERSION DE COULEUR SLIDE 3
+   - Gros titre Charcoal : "Prêt à donner vie à votre projet ?"
+   - Formulaire simple : Nom | Email | Message | Bouton Envoyer
+   - Le bouton a un effet ripple au clic + animation de confirmation
+   - Fond avec motif de code subtil en overlay
+
+10. FOOTER (fond Charcoal très sombre, ex: #0F172A)
+    - Logo + tagline
+    - Liens rapides
+    - Réseaux sociaux : Facebook, Instagram, TikTok, LinkedIn, GitHub
+      (icônes SVG avec hover Peach + scale animation)
+    - Copyright "© 2025 Codexa Devlabs. Tous droits réservés."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 FONCTIONNALITÉ "DÉMARRER UN PROJET" 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Au clic sur le bouton "Démarrer un projet" (navbar et hero), une MODAL animée 
+s'ouvre avec un formulaire intelligent en 4 étapes (stepper visuel en haut).
+
+OUVERTURE DE LA MODAL :
+- Overlay sombre (rgba 0,0,0,0.7) qui fade-in
+- La modal slide-up depuis le bas avec un effet spring (cubic-bezier élastique)
+- Bouton X pour fermer avec rotation 90° au hover
+- Fond de la modal en Charcoal (#1F2937) avec bordure subtile Peach
+
+STEPPER EN HAUT DE LA MODAL :
+- 4 cercles numérotés reliés par une barre de progression
+- La barre se remplit en Peach à chaque étape validée
+- Étape active : cercle plein Peach + label visible
+- Étapes passées : cercle avec checkmark ✓ en Peach
+- Transitions fluides entre chaque étape (slide left/right)
+
+─────────────────────────────────────
+ÉTAPE 1 — Informations de l'entreprise
+─────────────────────────────────────
+Champs à renseigner :
+  · Nom de l'entreprise (input texte, obligatoire)
+  · Secteur d'activité (select : Tech | Commerce | Santé | Éducation | 
+    Finance | Restauration | Mode | Autre)
+  · Nom du contact / responsable (input texte)
+  · Email professionnel (input email, avec validation format)
+
+Design :
+  · Floating labels animés (le label monte quand le champ est focus)
+  · Bordure du champ qui devient Peach au focus avec glow subtil
+  · Validation en temps réel (icône ✓ verte quand valide, ✗ rouge si invalide)
+  · Bouton "Suivant →" disabled tant que les champs obligatoires ne sont pas remplis
+
+─────────────────────────────────────
+ÉTAPE 2 — Choix des couleurs
+─────────────────────────────────────
+Titre : "Choisissez les couleurs de votre projet"
+Sous-titre : "Ces couleurs définiront l'identité visuelle de votre site"
+
+SECTION A — Palettes prédéfinies (6 à 8 palettes)
+  Afficher des cartes de palettes cliquables, chacune avec 2 couleurs (primaire + accent) :
+  · Midnight Blue (#0F172A + #38BDF8) — "Tech & Moderne"
+  · Forest (#1A2E1A + #4ADE80) — "Nature & Écologie"  
+  · Royal (#1E1B4B + #A78BFA) — "Luxe & Créativité"
+  · Crimson (#1F0A0A + #F87171) — "Bold & Impact"
+  · Ocean (#0C1A2E + #67E8F9) — "Corporate & Fiable"
+  · Charcoal Peach (#1F2937 + #FFA77F) — "Comme Codexa ✦"
+  · Sand (#2C2416 + #FBBF24) — "Chaleureux & Premium"
+  · Slate (#0F2027 + #A8EDEA) — "Minimaliste & Clean"
+
+  Design des cartes palettes :
+  · Chaque carte = rectangle avec dégradé montrant les 2 couleurs + label
+  · Bordure Peach + scale 1.05 au clic (sélection)
+  · Checkmark animé sur la carte sélectionnée
+
+SECTION B — Color Picker personnalisé
+  · Titre "Ou personnalisez vos couleurs :"
+  · Deux color pickers natifs (<input type="color">) stylisés :
+    - Couleur Primaire (fond principal)
+    - Couleur Accent (boutons, highlights)
+  · Prévisualisation live : un mini mockup de carte qui change de couleur 
+    en temps réel selon les choix (fond = couleur primaire, bouton = couleur accent)
+  · Quand on utilise le picker, la palette sélectionnée se désélectionne automatiquement
+
+Boutons : "← Retour" | "Suivant →"
+
+─────────────────────────────────────
+ÉTAPE 3 — Thème & objectif du site
+─────────────────────────────────────
+Titre : "Quel est le rôle de votre site ?"
+Sous-titre : "Sélectionnez tout ce qui correspond à votre projet"
+
+CHOIX DU TYPE DE SITE (selection multiple possible, cartes cliquables avec icônes) :
+  · 🛒 E-commerce / Boutique en ligne
+  · 💼 Site vitrine / Portfolio
+  · 📰 Blog / Magazine
+  · 📊 Dashboard / Application web
+  · 🏢 Site corporate / Institutionnel
+  · 📱 Landing page produit
+  · 🎓 Plateforme éducative / E-learning
+  · 🍽️ Restaurant / Menu en ligne
+  · 🏥 Santé / Cabinet médical
+  · 🎮 Gaming / Divertissement
+
+FONCTIONNALITÉS SOUHAITÉES (checkboxes stylisées) :
+  ☐ Prise de rendez-vous / Réservation
+  ☐ Espace membre / Authentification
+  ☐ Paiement en ligne
+  ☐ Multilingue (plusieurs langues)
+  ☐ Blog / Actualités
+  ☐ Chat / Support client
+  ☐ Galerie photos/vidéos
+  ☐ Formulaire de contact
+
+BUDGET ESTIMATIF (slider stylisé avec Peach) :
+  · Range : 100 000 FCFA — 5 000 000 FCFA
+  · Valeur affichée dynamiquement au-dessus du slider
+  · 3 labels : Starter | Pro | Enterprise
+
+DESCRIPTION LIBRE :
+  · Textarea : "Décrivez votre projet en quelques mots..." (max 500 caractères)
+  · Compteur de caractères en bas à droite
+
+Boutons : "← Retour" | "Voir le résumé →"
+
+─────────────────────────────────────
+ÉTAPE 4 — Résumé & Confirmation
+─────────────────────────────────────
+Titre : "Récapitulatif de votre projet"
+Sous-titre : "Voici ce que nous avons retenu"
+
+CARTE RÉSUMÉ ANIMÉE (fade-in avec stagger delay) :
+  · Section "Votre entreprise" :
+    - Nom de l'entreprise (affiché en grand, police Fira Code)
+    - Secteur | Contact | Email
+  · Section "Vos couleurs" :
+    - Deux cercles colorés côte à côte (couleur primaire + accent)
+    - Nom de la palette ou "Personnalisée"
+    - Mini preview live avec les vraies couleurs choisies
+  · Section "Votre projet" :
+    - Type(s) de site sélectionné(s) sous forme de badges/pills
+    - Fonctionnalités cochées sous forme de tags
+    - Budget estimé
+    - Description saisie
+
+BOUTON PRINCIPAL :
+  "✦ Envoyer ma demande à Codexa Devlabs"
+  · Fond Peach, texte Charcoal, très visible
+  · Au clic : animation de chargement (spinner 1.5s) puis 
+    animation de succès (checkmark qui se dessine en SVG + confettis légers)
+  · Message : "🎉 Votre demande a été envoyée ! Notre équipe vous contacte sous 24h."
+
+BOUTON SECONDAIRE :
+  "← Modifier mes informations" (retour à l'étape 1)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 ICÔNES DE DÉVELOPPEMENT FLOTTANTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Dans le Hero et en arrière-plan de certaines sections, placer des icônes 
+qui flottent lentement et de manière indépendante (animation float avec 
+keyframes différents : translateY, rotation légère, opacité variable) :
+- { } accolades de code
+- </> balises HTML
+- # hashtag/sharp
+- () parenthèses
+- Terminal prompt $
+- Icône engrenage ⚙
+- Icône éclair ⚡
+- Icône base de données 🗄
+- Icône mobile 📱
+- Logo-like formes géométriques
+Toutes en couleur Peach semi-transparente ou contour seulement, 
+tailles variées (20px à 80px), positions aléatoires, 
+z-index bas pour rester en arrière-plan.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ ANIMATIONS ET TRANSITIONS REQUISES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OBLIGATOIRES :
+- Typewriter effect sur le titre Hero (boucle infinie)
+- Float animation sur les icônes dev (chacune avec timing différent)
+- Scroll reveal : éléments qui fade-in + slide-up à l'entrée dans viewport
+  (utiliser IntersectionObserver avec threshold 0.2)
+- Counter animation sur les statistiques (0 → valeur finale en 2s)
+- Marquee infini pour les technologies (CSS animation)
+- Hover effects : glow, lift, color shift sur toutes les cartes
+- SVG path animation pour la timeline (stroke-dashoffset)
+- Smooth scroll entre sections
+- Cursor personnalisé : petit cercle Peach qui suit la souris avec léger lag
+- Page loader : animation de code qui se tape puis disparaît
+- Transitions entre sections avec clip-path ou gradient overlay fluide
+- Modal spring animation (slide-up élastique à l'ouverture)
+- Stepper progress bar qui se remplit en Peach entre les étapes
+- Slide left/right entre les étapes de la modal
+- Validation champs en temps réel avec micro-animations
+- Color picker preview live avec transition de couleur fluide
+- Animation confettis + checkmark SVG à la soumission finale
+
+MICRO-INTERACTIONS :
+- Boutons : ripple effect au clic + scale 0.97 + shadow
+- Liens nav : underline animé qui se trace de gauche à droite
+- Input fields : label qui remonte au focus (floating label)
+- Images/cartes : parallax léger au hover (tilt effect 3D avec perspective)
+- Scroll progress bar en haut de page en couleur Peach
+- Cartes palettes : scale + border glow au hover, checkmark au clic
+- Checkboxes fonctionnalités : animation de coche animée personnalisée
+- Slider budget : thumb Peach avec tooltip valeur qui suit
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📐 EXIGENCES TECHNIQUES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- Fichier HTML unique avec CSS et JS intégrés dans des balises <style> et <script>
+- 100% responsive : mobile-first, breakpoints 768px et 1024px
+- Aucun framework externe (pas de Bootstrap, pas de jQuery) — CSS et JS vanilla purs
+- Utiliser les CSS Custom Properties (variables) pour toutes les couleurs
+- Utiliser CSS Grid et Flexbox pour les layouts
+- Smooth scroll natif : scroll-behavior: smooth
+- Performance : animations via transform et opacity uniquement (pas de layout shift)
+- Accessibilité basique : aria-labels sur boutons, alt sur images, focus visible
+- Les sections alternent fond Charcoal et fond Peach de façon intentionnelle 
+  pour créer un rythme visuel fort et démontrer la maîtrise des inversions
+- La modal est entièrement gérée en JS vanilla (open/close/steps/validation)
+- Les données du formulaire sont stockées en JS (objet local) et affichées 
+  dynamiquement dans le résumé final (étape 4)
+- La modal doit être accessible : focus trap, fermeture avec Escape, 
+  aria-modal="true"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 AMBITION FINALE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ce site doit immédiatement inspirer confiance et impressionner tout visiteur.
+Il doit transmettre visuellement : expertise technique, modernité, créativité 
+et professionnalisme. Chaque scroll doit révéler quelque chose de nouveau.
+Le visiteur doit avoir l'impression de regarder le travail d'un développeur 
+senior passionné, pas un template générique.
+Le formulaire "Démarrer un projet" doit être une expérience à part entière :
+fluide, guidée, visuellement cohérente avec le site, et qui donne envie 
+au client de compléter toutes les étapes jusqu'au bout.
+Génère le code complet, sans omissions, prêt à être copié-collé dans un 
+fichier index.html et ouvert dans un navigateur.
