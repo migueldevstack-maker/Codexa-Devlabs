@@ -38,7 +38,7 @@ export function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
     customC2: "#ffffff",
     types: [] as string[],
     features: [] as string[],
-    budget: 2500000,
+    budget: 500000,
     desc: ""
   });
 
@@ -288,9 +288,11 @@ Envoyé depuis codevlabs.com`;
                     <label className="text-sm font-mono text-muted-foreground">Budget estimé (FCFA)</label>
                     <span className="text-primary font-bold">{new Intl.NumberFormat('fr-FR').format(data.budget)} FCFA</span>
                   </div>
-                  <input type="range" min="500000" max="10000000" step="100000" value={data.budget} onChange={e=>setData({...data, budget: parseInt(e.target.value)})} className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" />
-                  <div className="flex justify-between text-xs text-muted-foreground mt-2 font-mono">
-                    <span>500k</span><span>5M</span><span>10M+</span>
+                  <input type="range" min="100000" max="5000000" step="50000" value={data.budget} onChange={e=>setData({...data, budget: parseInt(e.target.value)})} className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary" />
+                  <div className="flex justify-between text-xs mt-2 font-mono">
+                    <span className="text-primary/80">🟢 Starter<br/><span className="text-muted-foreground">100k – 500k</span></span>
+                    <span className="text-primary/80 text-center">🔵 Pro<br/><span className="text-muted-foreground">500k – 2M</span></span>
+                    <span className="text-primary/80 text-right">🟠 Enterprise<br/><span className="text-muted-foreground">2M – 5M+</span></span>
                   </div>
                 </div>
               </motion.div>
