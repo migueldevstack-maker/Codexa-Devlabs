@@ -71,7 +71,39 @@ export function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
 
   const submitForm = () => {
     setIsSubmitting(true);
+
+    const primaryColor = data.isCustomColor ? data.customC1 : data.colors.c1;
+    const accentColor = data.isCustomColor ? data.customC2 : data.colors.c2;
+    const paletteName = data.isCustomColor ? "Personnalisée" : data.colors.name;
+    const budgetFormatted = new Intl.NumberFormat('fr-FR').format(data.budget);
+
+    const message =
+`🚀 *NOUVELLE DEMANDE DE PROJET*
+_Codexa Devlabs — Formulaire Site_
+
+👤 *Entreprise :* ${data.company || "Non renseigné"}
+🏷️ *Secteur :* ${data.sector || "Non renseigné"}
+👨‍💼 *Contact :* ${data.contact || "Non renseigné"}
+📧 *Email :* ${data.email || "Non renseigné"}
+
+🎨 *Couleurs choisies :*
+• Primaire : ${primaryColor}
+• Accent : ${accentColor}
+• Palette : ${paletteName}
+
+🌐 *Type de site :* ${data.types.length ? data.types.join(", ") : "Non spécifié"}
+⚙️ *Fonctionnalités :* ${data.features.length ? data.features.join(", ") : "Non spécifiées"}
+💰 *Budget estimé :* ${budgetFormatted} FCFA
+📝 *Description :* ${data.desc || "Aucune description fournie"}
+
+─────────────────────────────
+Envoyé depuis codevlabs.com`;
+
+    const encoded = encodeURIComponent(message);
+    const waUrl = `https://wa.me/2250507333733?text=${encoded}`;
+
     setTimeout(() => {
+      window.open(waUrl, "_blank");
       setIsSubmitting(false);
       setIsSuccess(true);
     }, 1500);
@@ -142,9 +174,12 @@ export function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
                 >
                   <Check className="w-12 h-12" />
                 </motion.div>
-                <h2 className="text-3xl font-bold text-white mb-4">Demande envoyée ! 🎉</h2>
-                <p className="text-muted-foreground text-lg mb-8 max-w-md mx-auto">
-                  Notre équipe va analyser vos besoins et vous recontactera sous 24h avec une proposition adaptée.
+                <h2 className="text-3xl font-bold text-white mb-4">WhatsApp s'est ouvert ! 🎉</h2>
+                <p className="text-muted-foreground text-lg mb-2 max-w-md mx-auto">
+                  Appuyez sur <span className="text-green-400 font-semibold">Envoyer</span> dans WhatsApp pour transmettre votre demande.
+                </p>
+                <p className="text-muted-foreground text-sm mb-8 max-w-md mx-auto">
+                  Notre équipe vous répond sous 24h.
                 </p>
                 <button onClick={onClose} className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors">
                   Fermer
