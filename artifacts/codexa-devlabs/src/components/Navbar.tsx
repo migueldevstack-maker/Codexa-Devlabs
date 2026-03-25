@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Code2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -35,11 +35,13 @@ export function Navbar({ onOpenModal }: NavbarProps) {
       )}
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 group">
-          <Code2 className="w-8 h-8 text-primary group-hover:rotate-12 transition-transform duration-300" />
-          <span className="font-mono font-bold text-xl tracking-tight text-white">
-            Codexa <span className="text-primary">Devlabs</span>
-          </span>
+        <a href="#home" className="flex items-center group">
+          <img
+            src="/logo-codexa.png"
+            alt="Codexa Devlabs"
+            className="h-12 w-auto object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </a>
 
         {/* Desktop Nav */}

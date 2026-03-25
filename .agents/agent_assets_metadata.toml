@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "JbmIdIZm6dbOS-cex6opw"
+uri = "file://attached_assets/Capture_d'écran_2026-03-24_142420_1774420473618.png"
+type = "image"
+title = "Logo Codexa Devlabs (PNG transparent)"
