@@ -39,7 +39,8 @@ export function Navbar({ onOpenModal }: NavbarProps) {
           <img
             src="/logo-codexa.png"
             alt="Codexa Devlabs"
-            className="h-14 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300"
+            className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            style={{ filter: "invert(1)", mixBlendMode: "screen" }}
           />
         </a>
 

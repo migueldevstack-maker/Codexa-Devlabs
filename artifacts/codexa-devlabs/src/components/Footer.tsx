@@ -10,7 +10,8 @@ export function Footer() {
               <img
                 src="/logo-codexa.png"
                 alt="Codexa Devlabs"
-                className="h-16 w-auto object-contain rounded-xl"
+                className="h-16 w-auto object-contain"
+                style={{ filter: "invert(1)", mixBlendMode: "screen" }}
               />
             </a>
             <p className="text-muted-foreground max-w-sm">
