@@ -39,8 +39,7 @@ export function Navbar({ onOpenModal }: NavbarProps) {
           <img
             src="/logo-codexa.png"
             alt="Codexa Devlabs"
-            className="h-12 w-auto object-contain"
-            style={{ filter: "brightness(0) invert(1)" }}
+            className="h-14 w-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-300"
           />
         </a>
 

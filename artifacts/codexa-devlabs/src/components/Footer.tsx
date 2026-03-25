@@ -1,4 +1,4 @@
-import { Code2, Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
   return (
@@ -6,11 +6,12 @@ export function Footer() {
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <a href="#home" className="flex items-center gap-2 mb-6">
-              <Code2 className="w-8 h-8 text-primary" />
-              <span className="font-mono font-bold text-xl tracking-tight text-white">
-                Codexa <span className="text-primary">Devlabs</span>
-              </span>
+            <a href="#home" className="flex items-center mb-6">
+              <img
+                src="/logo-codexa.png"
+                alt="Codexa Devlabs"
+                className="h-16 w-auto object-contain rounded-xl"
+              />
             </a>
             <p className="text-muted-foreground max-w-sm">
               L'agence tech premium qui transforme vos idées audacieuses en produits digitaux exceptionnels.
