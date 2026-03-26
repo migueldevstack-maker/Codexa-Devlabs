@@ -69,7 +69,7 @@ export function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
     }));
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     setIsSubmitting(true);
 
     const primaryColor = data.isCustomColor ? data.customC1 : data.colors.c1;
@@ -77,7 +77,7 @@ export function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
     const paletteName = data.isCustomColor ? "Personnalisée" : data.colors.name;
     const budgetFormatted = new Intl.NumberFormat('fr-FR').format(data.budget);
 
-    const message =
+    const waMessage =
 `🚀 *NOUVELLE DEMANDE DE PROJET*
 _Codexa Devlabs — Formulaire Site_
 
@@ -99,14 +99,40 @@ _Codexa Devlabs — Formulaire Site_
 ─────────────────────────────
 Envoyé depuis codevlabs.com`;
 
-    const encoded = encodeURIComponent(message);
+    // Sauvegarder dans la base de données
+    try {
+      await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "project_request",
+          name: data.contact || data.company,
+          email: data.email,
+          message: data.desc,
+          extraData: {
+            company: data.company,
+            sector: data.sector,
+            contact: data.contact,
+            palette: paletteName,
+            primaryColor,
+            accentColor,
+            types: data.types,
+            features: data.features,
+            budget: data.budget,
+            budgetFormatted: `${budgetFormatted} FCFA`,
+          },
+        }),
+      });
+    } catch {
+      // Silently continue — WhatsApp fallback still works
+    }
+
+    const encoded = encodeURIComponent(waMessage);
     const waUrl = `https://wa.me/2250507333733?text=${encoded}`;
 
-    setTimeout(() => {
-      window.open(waUrl, "_blank");
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1500);
+    window.open(waUrl, "_blank");
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
   const stepVariants = {

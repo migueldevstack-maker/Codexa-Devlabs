@@ -1,5 +1,6 @@
 import { Switch, Route, Router as WouterRouter, Redirect } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
@@ -7,6 +8,13 @@ import NotFound from "@/pages/not-found";
 import Login from "@/pages/admin/Login";
 import Dashboard from "@/pages/admin/Dashboard";
 import { useAuth } from "@/hooks/useAuth";
+
+function VisitTracker() {
+  useEffect(() => {
+    fetch("/api/visits", { method: "POST" }).catch(() => {});
+  }, []);
+  return null;
+}
 
 const queryClient = new QueryClient();
 
@@ -39,6 +47,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <VisitTracker />
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
           <Router />
         </WouterRouter>

@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
 
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus("loading");
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+
+    try {
+      await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", name, email, message }),
+      });
+      setStatus("success");
+      form.reset();
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   return (
@@ -40,6 +58,7 @@ export function Contact() {
           </motion.div>
 
           <motion.form
+            ref={formRef}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -49,26 +68,29 @@ export function Contact() {
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-white mb-2 font-mono">Nom complet</label>
-                <input required type="text" className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Jean Dupont" />
+                <input name="name" required type="text" className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Jean Dupont" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-white mb-2 font-mono">Email professionnel</label>
-                <input required type="email" className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="jean@entreprise.com" />
+                <input name="email" required type="email" className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="jean@entreprise.com" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-white mb-2 font-mono">Votre message</label>
-                <textarea required rows={4} className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Parlez-nous de votre projet..."></textarea>
+                <textarea name="message" required rows={4} className="w-full bg-card border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Parlez-nous de votre projet..."></textarea>
               </div>
               
               <button 
                 type="submit"
-                disabled={submitted}
-                className="w-full bg-primary text-primary-foreground font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors relative overflow-hidden group"
+                disabled={status === "loading" || status === "success"}
+                className="w-full bg-primary text-primary-foreground font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors relative overflow-hidden group disabled:opacity-80"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  {submitted ? <><CheckCircle className="w-5 h-5" /> Envoyé avec succès</> : <><Send className="w-5 h-5" /> Envoyer le message</>}
+                  {status === "loading" ? <><Loader2 className="w-5 h-5 animate-spin" /> Envoi en cours...</>
+                  : status === "success" ? <><CheckCircle className="w-5 h-5" /> Message reçu !</>
+                  : status === "error" ? "Erreur — réessayer"
+                  : <><Send className="w-5 h-5" /> Envoyer le message</>}
                 </span>
-                {!submitted && <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />}
+                {status === "idle" && <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />}
               </button>
             </div>
           </motion.form>
