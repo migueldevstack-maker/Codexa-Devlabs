@@ -52,7 +52,12 @@ export function Contact() {
                 <div className="w-10 h-10 rounded-full bg-background flex items-center justify-center">
                   <span className="text-primary text-xl">@</span>
                 </div>
-                <span>hello@codexadevlabs.com</span>
+                <a
+                  href="mailto:CodexaDevlabsCI-MJ@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  CodexaDevlabsCI-MJ@gmail.com
+                </a>
               </div>
             </div>
           </motion.div>

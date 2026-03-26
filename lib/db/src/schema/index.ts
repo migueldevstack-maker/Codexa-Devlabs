@@ -20,3 +20,4 @@
 export * from "./projects";
 export * from "./messages";
 export * from "./visits";
+export * from "./admins";

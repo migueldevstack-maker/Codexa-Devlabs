@@ -10,6 +10,7 @@ export function Hero({ onOpenModal }: HeroProps) {
   const [typedText, setTypedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const phrases = ["Nous codons vos ambitions.", "We build the future.", "Des solutions sur mesure."];
   const typingSpeed = 100;
@@ -17,27 +18,35 @@ export function Hero({ onOpenModal }: HeroProps) {
   const pauseTime = 2000;
 
   useEffect(() => {
-    const currentPhrase = phrases[phraseIndex];
-    
+    if (isPaused) {
+      const pauseTimer = setTimeout(() => {
+        setIsPaused(false);
+        setIsDeleting(true);
+      }, pauseTime);
+      return () => clearTimeout(pauseTimer);
+    }
+
+    const currentPhrase = phrases[phraseIndex] ?? "";
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         if (typedText.length < currentPhrase.length) {
           setTypedText(currentPhrase.slice(0, typedText.length + 1));
         } else {
-          setTimeout(() => setIsDeleting(true), pauseTime);
+          setIsPaused(true);
         }
+        return;
+      }
+
+      if (typedText.length > 0) {
+        setTypedText(currentPhrase.slice(0, typedText.length - 1));
       } else {
-        if (typedText.length > 0) {
-          setTypedText(currentPhrase.slice(0, typedText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setPhraseIndex((prev) => (prev + 1) % phrases.length);
-        }
+        setIsDeleting(false);
+        setPhraseIndex((prev) => (prev + 1) % phrases.length);
       }
     }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [typedText, isDeleting, phraseIndex]);
+  }, [typedText, isDeleting, phraseIndex, isPaused]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">

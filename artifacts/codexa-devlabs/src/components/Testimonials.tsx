@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
 const testimonials = [
@@ -42,38 +42,35 @@ export function Testimonials() {
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-16">Ce que disent nos clients</h2>
 
         <div className="relative h-[300px] md:h-[250px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0 flex flex-col items-center"
-            >
-              <Quote className="w-12 h-12 text-primary/20 mb-6" />
-              
-              <div className="flex gap-1 mb-6">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="w-5 h-5 fill-primary text-primary" />
-                ))}
-              </div>
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 flex flex-col items-center"
+          >
+            <Quote className="w-12 h-12 text-primary/20 mb-6" />
+            
+            <div className="flex gap-1 mb-6">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <Star key={s} className="w-5 h-5 fill-primary text-primary" />
+              ))}
+            </div>
 
-              <p className="text-xl md:text-2xl text-white/90 font-light italic leading-relaxed mb-8 max-w-3xl">
-                "{testimonials[current].text}"
-              </p>
+            <p className="text-xl md:text-2xl text-white/90 font-light italic leading-relaxed mb-8 max-w-3xl">
+              "{testimonials[current].text}"
+            </p>
 
-              <div className="flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-full ${testimonials[current].color} flex items-center justify-center text-white font-bold text-lg`}>
-                  {testimonials[current].initials}
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-white">{testimonials[current].name}</div>
-                  <div className="text-primary text-sm font-mono">{testimonials[current].role}</div>
-                </div>
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-full ${testimonials[current].color} flex items-center justify-center text-white font-bold text-lg`}>
+                {testimonials[current].initials}
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <div className="text-left">
+                <div className="font-bold text-white">{testimonials[current].name}</div>
+                <div className="text-primary text-sm font-mono">{testimonials[current].role}</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         <div className="flex justify-center gap-3 mt-12">

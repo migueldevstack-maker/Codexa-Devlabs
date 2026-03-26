@@ -1,5 +1,8 @@
 import { Router, type IRouter } from "express";
 import jwt from "jsonwebtoken";
+import { db } from "@workspace/db";
+import { adminsTable } from "@workspace/db/schema";
+import { eq } from "drizzle-orm";
 
 const router: IRouter = Router();
 
@@ -10,13 +13,32 @@ const JWT_SECRET = process.env.JWT_SECRET ?? "codexa-devlabs-secret-2025";
 router.post("/auth/login", (req, res) => {
   const { username, password } = req.body as { username: string; password: string };
 
-  if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
-    res.status(401).json({ message: "Identifiants incorrects" });
-    return;
-  }
+  const login = async () => {
+    const [adminFromDb] = await db
+      .select()
+      .from(adminsTable)
+      .where(eq(adminsTable.username, username))
+      .limit(1);
 
-  const token = jwt.sign({ username, role: "admin" }, JWT_SECRET, { expiresIn: "7d" });
-  res.json({ token, success: true });
+    const isDbAdminValid =
+      adminFromDb !== undefined && adminFromDb.password === password;
+    const isEnvAdminValid =
+      username === ADMIN_USERNAME && password === ADMIN_PASSWORD;
+
+    if (!isDbAdminValid && !isEnvAdminValid) {
+      res.status(401).json({ message: "Identifiants incorrects" });
+      return;
+    }
+
+    const token = jwt.sign({ username, role: "admin" }, JWT_SECRET, {
+      expiresIn: "7d",
+    });
+    res.json({ token, success: true });
+  };
+
+  login().catch(() => {
+    res.status(500).json({ message: "Erreur serveur" });
+  });
 });
 
 export function requireAuth(req: any, res: any, next: any) {

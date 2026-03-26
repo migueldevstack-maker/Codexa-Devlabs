@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
@@ -74,38 +74,35 @@ export function Navbar({ onOpenModal }: NavbarProps) {
       </div>
 
       {/* Mobile Nav */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card border-b border-border overflow-hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenModal();
-                }}
-                className="w-full mt-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-center"
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          className="md:hidden bg-card border-b border-border overflow-hidden"
+        >
+          <div className="px-6 py-4 flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
               >
-                Démarrer un projet
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {link.name}
+              </a>
+            ))}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenModal();
+              }}
+              className="w-full mt-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-bold text-center"
+            >
+              Démarrer un projet
+            </button>
+          </div>
+        </motion.div>
+      )}
     </header>
   );
 }

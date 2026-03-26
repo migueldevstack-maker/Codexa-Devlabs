@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -30,11 +30,50 @@ export function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Social</h4>
             <div className="flex gap-4">
-              {[Linkedin, Twitter, Instagram, Github].map((Icon, i) => (
+              {[Linkedin, Instagram].map((Icon, i) => (
                 <a key={i} href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-1 transition-all">
                   <Icon className="w-5 h-5" />
                 </a>
               ))}
+              <a
+                href="https://github.com/DARK19SMITH/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-1 transition-all"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
+            <div className="mt-6 space-y-2 text-sm text-muted-foreground">
+              <p>
+                Email:{" "}
+                <a
+                  href="mailto:CodexaDevlabsCI-MJ@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  CodexaDevlabsCI-MJ@gmail.com
+                </a>
+              </p>
+              <p>
+                Téléphone:{" "}
+                <a
+                  href="tel:+2250507333733"
+                  className="hover:text-white transition-colors"
+                >
+                  +225 05 07 33 37 33
+                </a>
+              </p>
+              <p>
+                GitHub:{" "}
+                <a
+                  href="https://github.com/DARK19SMITH/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  github.com/DARK19SMITH
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -48,6 +87,17 @@ export function Footer() {
             <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
           </div>
         </div>
+        <p className="mt-4 text-center text-sm text-secondary-foreground/60">
+          Conçu par{" "}
+          <a
+            href="https://migueldevportofolio.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:text-white transition-colors font-semibold"
+          >
+            Miguel Koffi
+          </a>
+        </p>
       </div>
     </footer>
   );

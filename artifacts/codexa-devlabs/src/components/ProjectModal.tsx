@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { X, Check, ArrowRight, Loader2, Sparkles } from "lucide-react";
 
 interface ProjectModalProps {
@@ -191,8 +191,7 @@ Envoyé depuis codevlabs.com`;
 
         {/* Body */}
         <div className="p-6 sm:p-8 overflow-y-auto flex-1 custom-scrollbar">
-          <AnimatePresence mode="wait">
-            {isSuccess ? (
+          {isSuccess ? (
               <motion.div key="success" initial="hidden" animate="visible" variants={stepVariants} className="text-center py-20">
                 <motion.div 
                   initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.2 }}
@@ -211,7 +210,7 @@ Envoyé depuis codevlabs.com`;
                   Fermer
                 </button>
               </motion.div>
-            ) : step === 1 ? (
+          ) : step === 1 ? (
               <motion.div key="step1" initial="hidden" animate="visible" exit="exit" variants={stepVariants} className="space-y-6">
                 <h4 className="text-2xl font-bold text-white mb-6">Informations de base</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -236,7 +235,7 @@ Envoyé depuis codevlabs.com`;
                   </div>
                 </div>
               </motion.div>
-            ) : step === 2 ? (
+          ) : step === 2 ? (
               <motion.div key="step2" initial="hidden" animate="visible" exit="exit" variants={stepVariants}>
                 <h4 className="text-2xl font-bold text-white mb-2">Identité visuelle</h4>
                 <p className="text-muted-foreground mb-6">Choisissez une palette ou définissez la vôtre.</p>
@@ -282,7 +281,7 @@ Envoyé depuis codevlabs.com`;
                   </div>
                 </div>
               </motion.div>
-            ) : step === 3 ? (
+          ) : step === 3 ? (
               <motion.div key="step3" initial="hidden" animate="visible" exit="exit" variants={stepVariants}>
                 <h4 className="text-2xl font-bold text-white mb-6">Projet & Fonctionnalités</h4>
                 
@@ -322,7 +321,7 @@ Envoyé depuis codevlabs.com`;
                   </div>
                 </div>
               </motion.div>
-            ) : (
+          ) : (
               <motion.div key="step4" initial="hidden" animate="visible" exit="exit" variants={stepVariants}>
                 <h4 className="text-2xl font-bold text-white mb-6">Récapitulatif</h4>
                 
@@ -362,8 +361,7 @@ Envoyé depuis codevlabs.com`;
                   </div>
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
+          )}
         </div>
 
         {/* Footer Actions */}
