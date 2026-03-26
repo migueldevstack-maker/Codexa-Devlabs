@@ -8,9 +8,93 @@
 import * as zod from "zod";
 
 /**
- * Returns server health status
  * @summary Health check
  */
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
+});
+
+/**
+ * @summary Admin login
+ */
+export const LoginBody = zod.object({
+  username: zod.string(),
+  password: zod.string(),
+});
+
+export const LoginResponse = zod.object({
+  token: zod.string(),
+  success: zod.boolean(),
+});
+
+/**
+ * @summary List all projects
+ */
+export const ListProjectsResponseItem = zod.object({
+  id: zod.number(),
+  title: zod.string(),
+  description: zod.string(),
+  category: zod.string(),
+  techTags: zod.array(zod.string()),
+  imageUrl: zod.string().nullish(),
+  projectUrl: zod.string().nullish(),
+  featured: zod.boolean(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
+});
+export const ListProjectsResponse = zod.array(ListProjectsResponseItem);
+
+/**
+ * @summary Create a new project (admin only)
+ */
+export const CreateProjectBody = zod.object({
+  title: zod.string(),
+  description: zod.string().optional(),
+  category: zod.string(),
+  techTags: zod.array(zod.string()).optional(),
+  imageUrl: zod.string().nullish(),
+  projectUrl: zod.string().nullish(),
+  featured: zod.boolean().optional(),
+});
+
+/**
+ * @summary Update a project (admin only)
+ */
+export const UpdateProjectParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const UpdateProjectBody = zod.object({
+  title: zod.string().optional(),
+  description: zod.string().optional(),
+  category: zod.string().optional(),
+  techTags: zod.array(zod.string()).optional(),
+  imageUrl: zod.string().nullish(),
+  projectUrl: zod.string().nullish(),
+  featured: zod.boolean().optional(),
+});
+
+export const UpdateProjectResponse = zod.object({
+  id: zod.number(),
+  title: zod.string(),
+  description: zod.string(),
+  category: zod.string(),
+  techTags: zod.array(zod.string()),
+  imageUrl: zod.string().nullish(),
+  projectUrl: zod.string().nullish(),
+  featured: zod.boolean(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
+});
+
+/**
+ * @summary Delete a project (admin only)
+ */
+export const DeleteProjectParams = zod.object({
+  id: zod.coerce.number(),
+});
+
+export const DeleteProjectResponse = zod.object({
+  success: zod.boolean(),
+  message: zod.string().optional(),
 });

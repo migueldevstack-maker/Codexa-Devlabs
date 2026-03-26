@@ -8,3 +8,55 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  success: boolean;
+}
+
+export interface ErrorResponse {
+  message: string;
+}
+
+export interface SuccessResponse {
+  success: boolean;
+  message?: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  techTags: string[];
+  imageUrl?: string | null;
+  projectUrl?: string | null;
+  featured: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateProjectRequest {
+  title: string;
+  description?: string;
+  category: string;
+  techTags?: string[];
+  imageUrl?: string | null;
+  projectUrl?: string | null;
+  featured?: boolean;
+}
+
+export interface UpdateProjectRequest {
+  title?: string;
+  description?: string;
+  category?: string;
+  techTags?: string[];
+  imageUrl?: string | null;
+  projectUrl?: string | null;
+  featured?: boolean;
+}
