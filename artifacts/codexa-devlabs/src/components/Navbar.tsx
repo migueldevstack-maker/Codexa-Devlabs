@@ -39,7 +39,7 @@ export function Navbar({ onOpenModal }: NavbarProps) {
           <img
             src="/logo-codexa.png"
             alt="Codexa Devlabs"
-            className="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            className="h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
           />
         </a>
 
