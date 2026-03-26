@@ -103,14 +103,21 @@ export function Portfolio() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
                   </div>
 
-                  <div className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center z-20">
-                    <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
-                      <ArrowUpRight className="w-6 h-6 text-primary" />
-                    </div>
-                    <span className="text-primary-foreground font-bold text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
-                      {project.projectUrl ? "Voir le projet" : "Voir les détails"}
-                    </span>
-                  </div>
+                  {project.projectUrl && (
+                    <a
+                      href={project.projectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center z-20"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                        <ArrowUpRight className="w-6 h-6 text-primary" />
+                      </div>
+                      <span className="text-primary-foreground font-bold text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+                        Voir le projet
+                      </span>
+                    </a>
+                  )}
 
                   <div className="absolute inset-0 p-6 flex flex-col justify-end z-10 transition-opacity duration-300 group-hover:opacity-0">
                     <div className="flex gap-2 mb-3 flex-wrap">

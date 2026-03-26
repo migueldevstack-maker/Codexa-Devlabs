@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Plus, Pencil, Trash2, LogOut, Loader2, X, Check, ExternalLink, Star, StarOff } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Loader2, X, Check, ExternalLink, Star, StarOff, Upload, Image as ImageIcon } from "lucide-react";
 
 interface Project {
   id: number;
@@ -39,6 +39,9 @@ export default function Dashboard({ token, onLogout }: DashboardProps) {
   const [form, setForm] = useState(emptyForm);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
   const [filter, setFilter] = useState("Tous");
+  const [uploadLoading, setUploadLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const authHeaders = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
@@ -73,13 +76,35 @@ export default function Dashboard({ token, onLogout }: DashboardProps) {
     onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["/api/projects"] }); setDeleteConfirm(null); },
   });
 
-  const openAdd = () => { setForm(emptyForm); setEditingProject(null); setModalOpen(true); };
+  const handleImageUpload = async (file: File) => {
+    setUploadLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+      setForm(f => ({ ...f, imageUrl: data.url }));
+      setImagePreview(URL.createObjectURL(file));
+    } catch (err: any) {
+      alert(err.message ?? "Erreur lors de l'upload");
+    } finally {
+      setUploadLoading(false);
+    }
+  };
+
+  const openAdd = () => { setForm(emptyForm); setEditingProject(null); setImagePreview(""); setModalOpen(true); };
   const openEdit = (p: Project) => {
     setForm({ title: p.title, description: p.description, category: p.category, techTags: p.techTags.join(", "), imageUrl: p.imageUrl ?? "", projectUrl: p.projectUrl ?? "", featured: p.featured });
+    setImagePreview(p.imageUrl ?? "");
     setEditingProject(p);
     setModalOpen(true);
   };
-  const closeModal = () => { setModalOpen(false); setEditingProject(null); setForm(emptyForm); };
+  const closeModal = () => { setModalOpen(false); setEditingProject(null); setForm(emptyForm); setImagePreview(""); };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -280,14 +305,61 @@ export default function Dashboard({ token, onLogout }: DashboardProps) {
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-sm text-gray-400 font-mono">Image URL</label>
-                  <input
-                    value={form.imageUrl}
-                    onChange={e => setForm({ ...form, imageUrl: e.target.value })}
-                    className="w-full bg-[#1F2937] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:border-[#FFA77F] outline-none transition-all"
-                    placeholder="https://..."
-                  />
+                <div className="sm:col-span-2 space-y-1.5">
+                  <label className="text-sm text-gray-400 font-mono">Image du projet</label>
+                  <div
+                    className="relative rounded-xl border-2 border-dashed border-white/10 hover:border-[#FFA77F]/50 transition-colors overflow-hidden cursor-pointer group"
+                    onClick={() => fileInputRef.current?.click()}
+                    onDragOver={e => e.preventDefault()}
+                    onDrop={e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) handleImageUpload(f); }}
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      className="hidden"
+                      onChange={e => { const f = e.target.files?.[0]; if (f) handleImageUpload(f); }}
+                    />
+                    {imagePreview || form.imageUrl ? (
+                      <div className="relative h-40">
+                        <img
+                          src={imagePreview || form.imageUrl}
+                          alt="Aperçu"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="text-white text-sm font-medium flex items-center gap-2">
+                            <Upload className="w-4 h-4" /> Changer l'image
+                          </div>
+                        </div>
+                        {uploadLoading && (
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                            <Loader2 className="w-8 h-8 text-[#FFA77F] animate-spin" />
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="h-40 flex flex-col items-center justify-center text-gray-500 gap-3">
+                        {uploadLoading ? (
+                          <Loader2 className="w-8 h-8 text-[#FFA77F] animate-spin" />
+                        ) : (
+                          <>
+                            <ImageIcon className="w-10 h-10" />
+                            <div className="text-center">
+                              <p className="text-sm font-medium text-gray-400">Cliquez ou glissez une image ici</p>
+                              <p className="text-xs mt-1">JPG, PNG, WebP — max 5MB</p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  {form.imageUrl && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs text-gray-500 truncate flex-1">{form.imageUrl}</span>
+                      <button type="button" onClick={() => { setForm(f => ({ ...f, imageUrl: "" })); setImagePreview(""); }} className="text-xs text-red-400 hover:text-red-300 shrink-0">Supprimer</button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-1.5">
