@@ -165,24 +165,18 @@ ALTER TABLE ONLY public.visits ALTER COLUMN id SET DEFAULT nextval('public.visit
 -- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.messages (id, type, name, email, phone, message, extra_data, read, created_at) FROM stdin;
-\.
 
 
 --
 -- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.projects (id, title, description, category, tech_tags, image_url, project_url, featured, created_at, updated_at) FROM stdin;
-\.
 
 
 --
 -- Data for Name: visits; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.visits (id, date, count) FROM stdin;
-\.
 
 
 --
