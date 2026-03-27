@@ -1,8 +1,0 @@
-{
-    "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "https://codexa-api-b8i5.onrender.com/api/$1"
-      }
-    ]
-  }
