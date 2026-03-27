@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "https://codexa-devlabs.onrender.com"
+      }
+    ]
+  }
