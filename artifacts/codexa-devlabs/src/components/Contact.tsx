@@ -56,7 +56,7 @@ export function Contact() {
                   href="mailto:CodexaDevlabsCI-MJ@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  CodexaDevlabsCI-MJ@gmail.com
+                  codexadevlabsci@gmail.com
                 </a>
               </div>
             </div>
