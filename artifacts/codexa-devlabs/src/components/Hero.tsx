@@ -113,7 +113,7 @@ export function Hero({ onOpenModal }: HeroProps) {
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-card border border-border text-white font-semibold text-lg flex items-center justify-center
                      hover:bg-white/5 hover:border-primary/50 transition-all duration-300"
           >
-            Voir nos réalisations
+            Quelques réalisations
           </a>
         </motion.div>
       </div>
