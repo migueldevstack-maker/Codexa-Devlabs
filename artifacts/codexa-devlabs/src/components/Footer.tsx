@@ -15,6 +15,7 @@ export function Footer() {
             </a>
             <p className="text-muted-foreground max-w-sm">
               L'agence tech premium qui transforme vos idées audacieuses en produits digitaux exceptionnels.
+              Des projets innovants ? vient on les réalise
             </p>
           </div>
           
@@ -48,10 +49,10 @@ export function Footer() {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:CodexaDevlabsCI-MJ@gmail.com"
+                  href="mailto:codexadevlabsci@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  CodexaDevlabsCI-MJ@gmail.com
+                  codexadevlabsci@gmail.com
                 </a>
               </p>
               <p>
@@ -82,10 +83,7 @@ export function Footer() {
           <p className="text-muted-foreground text-sm font-mono">
             © 2025 Codexa Devlabs. Tous droits réservés.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-white transition-colors">Mentions légales</a>
-            <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
-          </div>
+          
         </div>
         <p className="mt-4 text-center text-sm text-secondary-foreground/60">
           Conçu par{" "}
