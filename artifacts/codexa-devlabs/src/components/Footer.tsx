@@ -61,7 +61,7 @@ export function Footer() {
                   href="tel:+2250507333733"
                   className="hover:text-white transition-colors"
                 >
-                  +225 05 07 33 37 33
+                  +225 07 04 77 04 43
                 </a>
               </p>
               <p>
