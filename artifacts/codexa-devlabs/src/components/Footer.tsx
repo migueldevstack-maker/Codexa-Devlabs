@@ -32,7 +32,7 @@ export function Footer() {
             <h4 className="text-white font-bold mb-6">Social</h4>
             <div className="flex gap-4">
               {[Linkedin, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-1 transition-all">
+                <a key={i} href="https://www.instagram.com/codexa_devlabs" className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary hover:-translate-y-1 transition-all">
                   <Icon className="w-5 h-5" />
                 </a>
               ))}
@@ -81,7 +81,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm font-mono">
-            © 2025 Codexa Devlabs. Tous droits réservés.
+            © 2026 Codexa Devlabs. Tous droits réservés.
           </p>
           
         </div>
